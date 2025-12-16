@@ -117,8 +117,14 @@ const styles = {
 
 /* ================= MOTION ================= */
 const pulse = {
-  animate: { scale: [1, 1.05, 1] },
-  transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+  animate: {
+    scale: [1, 1.05, 1],
+  },
+  transition: {
+    duration: 2,
+    repeat: Infinity,
+    ease: [0.42, 0, 0.58, 1],
+  },
 };
 
 export default function Home() {
@@ -188,7 +194,6 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        {/* BACKGROUND TYPO */}
         <motion.div
           animate={{ x: "-50%" }}
           transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
@@ -206,7 +211,6 @@ export default function Home() {
           SKYEZ SKYEZ SKYEZ SKYEZ
         </motion.div>
 
-        {/* IMAGE COLLAGE */}
         <div
           style={{
             position: "absolute",
@@ -216,7 +220,6 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          {/* LEFT */}
           <motion.img
             src="/hero/artist.png"
             initial={{ x: -200, opacity: 0, rotate: -10 }}
@@ -230,7 +233,6 @@ export default function Home() {
             }}
           />
 
-          {/* CENTER WRAPPER (IMAGE + TEXT) */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -242,17 +244,8 @@ export default function Home() {
               zIndex: 2,
             }}
           >
-            {/* CENTER IMAGE */}
-            <img
-              src="/hero/skyez.png"
-              alt="Skyez"
-              style={{
-                width: "100%",
-                display: "block",
-              }}
-            />
+            <img src="/hero/skyez.png" style={{ width: "100%" }} />
 
-            {/* TEXT ON IMAGE */}
             <div
               style={{
                 position: "absolute",
@@ -260,8 +253,6 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                textAlign: "center",
-                pointerEvents: "none",
               }}
             >
               <h1
@@ -270,8 +261,7 @@ export default function Home() {
                   fontSize: "clamp(2.5rem, 6vw, 5rem)",
                   letterSpacing: "0.25em",
                   color: WHITE,
-                  textShadow: "0 10px 40px rgba(0,0,0,0.6)",
-                  transform: "translateX(0.12em)", // optical centering for letter-spacing
+                  transform: "translateX(0.12em)",
                 }}
               >
                 SKYEZ
@@ -279,7 +269,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* RIGHT */}
           <motion.img
             src="/hero/right.png"
             initial={{ x: 200, opacity: 0, rotate: 10 }}
@@ -294,7 +283,6 @@ export default function Home() {
           />
         </div>
 
-        {/* GRAIN */}
         <div
           style={{
             position: "absolute",
@@ -359,7 +347,8 @@ export default function Home() {
 
         <motion.a
           href="mailto:booking@skyez.com"
-          {...pulse}
+          animate={pulse.animate}
+          transition={pulse.transition}
           style={styles.primaryCTA}
         >
           <FaEnvelope /> Book Skyez
